@@ -95,5 +95,21 @@ function sum(a,b)
 
 function showName(n)
 {
-    document.getElementById("mensaje").innerHTML = n
+    document.getElementById("mensaje").innerHTML = n.country[0].country_id;
+}
+
+async function bringCountry() {
+
+    const answer = await fetch("https://api.nationalize.io/?name=dagdag");
+
+    if(!answer.ok) {
+        let oops = "404 nothing found";
+        alert(oops);
+        throw new Error(oops);
+    }else{
+
+    const name = answer.json();
+
+    return name;
+    }
 }
